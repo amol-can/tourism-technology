@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_DATABASE: my-database
+    volumes:
+      - my-sql-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  my-sql-volume:
+
