@@ -1,1 +1,1 @@
-# Tourism Technology Fellowship Hackathon
+# Tourism Technology Festival Hackathon
