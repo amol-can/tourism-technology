@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Auth, Dashboard, Rewards, Transactions } from '@/pages';
+import { Auth, Overview, Rewards, Transactions } from '@/pages';
 import { ProtectedRoute } from '@/components';
 
 const App = () => {
@@ -7,7 +7,7 @@ const App = () => {
         <Routes>
             <Route index path='/' element={<Auth />} />
             <Route element={<ProtectedRoute />}>
-                <Route path='overview' element={<Dashboard />} />
+                <Route path='overview' element={<Overview />} />
                 <Route path='transactions' element={<Transactions />} />
                 <Route path='rewards' element={<Rewards />} />
             </Route>

@@ -59,6 +59,10 @@ const LoginForm = (props: LoginFormProps) => {
                         height='16'
                         {...register('password', {
                             required: 'This is required',
+                            minLength: {
+                                value: 6,
+                                message: 'Needs more than 6 characters',
+                            },
                         })}
                     />
                     <FormErrorMessage>

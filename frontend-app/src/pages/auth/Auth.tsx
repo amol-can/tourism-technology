@@ -13,7 +13,7 @@ const Auth = () => {
 
     return (
         <Flex alignItems='center' height='100vh'>
-            <Box flex='1' height='100%'>
+            <Box flex='1' height='100%' display={{ base: 'none', md: 'block' }}>
                 <Image
                     src={paymentsImg}
                     objectFit='cover'
