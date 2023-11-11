@@ -2,7 +2,7 @@ package com.tourism.tourismtechnology.service;
 
 import com.tourism.tourismtechnology.model.LoginRequest;
 import com.tourism.tourismtechnology.model.RegisterRequest;
-import com.tourism.tourismtechnology.model.User;
+import com.tourism.tourismtechnology.entity.User;
 import com.tourism.tourismtechnology.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.tourism.tourismtechnology.repository;
 
-import com.tourism.tourismtechnology.model.User;
+import com.tourism.tourismtechnology.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
