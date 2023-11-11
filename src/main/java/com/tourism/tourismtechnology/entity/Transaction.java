@@ -1,17 +1,6 @@
 package com.tourism.tourismtechnology.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,10 +8,9 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
-@Table(name = "transactions")
 @Getter
 @Setter
+@Entity(name = "transactions")
 @NoArgsConstructor
 public class Transaction {
 
@@ -36,14 +24,15 @@ public class Transaction {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date = new Date();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id", nullable = false)
     private User client;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "business_id", nullable = false)
     private User business;
 
     @OneToOne(mappedBy = "transaction", cascade = CascadeType.ALL)
-    private Point reward;
+    private Point point;
+
 }

@@ -2,6 +2,8 @@ package com.tourism.tourismtechnology.service;
 
 import com.tourism.tourismtechnology.entity.Point;
 import com.tourism.tourismtechnology.entity.Transaction;
+import com.tourism.tourismtechnology.mapper.TransactionMapper;
+import com.tourism.tourismtechnology.model.TransactionDto;
 import com.tourism.tourismtechnology.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,16 +15,21 @@ import java.util.List;
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
-    private final PointService rewardService;
+    private final PointService pointService;
+    private final TransactionMapper transactionMapper;
 
     @Autowired
-    public TransactionService(TransactionRepository transactionRepository, PointService rewardService) {
+    public TransactionService(TransactionRepository transactionRepository, PointService pointService, TransactionMapper transactionMapper) {
         this.transactionRepository = transactionRepository;
-        this.rewardService = rewardService;
+        this.pointService = pointService;
+        this.transactionMapper = transactionMapper;
     }
 
-    public List<Transaction> getAllTransactions() {
-        return transactionRepository.findAll();
+    public List<TransactionDto> getAllTransactions() {
+        return transactionRepository.findAll()
+                .stream()
+                .map(transactionMapper::toDto)
+                .toList();
     }
 
     public Transaction getTransactionById(Long id) {
@@ -37,7 +44,7 @@ public class TransactionService {
         return transactionRepository.findByBusinessId(id);
     }
 
-    public Transaction createTransaction(Transaction transaction) {
+    public TransactionDto createTransaction(Transaction transaction) {
         Transaction savedTransaction = transactionRepository.save(transaction);
 
         // Calculate reward points based on the transaction amount
@@ -50,9 +57,9 @@ public class TransactionService {
         reward.setUser(savedTransaction.getBusiness());
         reward.setDate(new Date());
 
-        rewardService.createPoint(reward);
+        pointService.createPoint(reward);
 
-        return savedTransaction;
+        return transactionMapper.toDto(savedTransaction);
     }
 
     public void deleteTransaction(Long id) {

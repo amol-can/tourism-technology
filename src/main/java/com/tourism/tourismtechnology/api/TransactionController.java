@@ -1,6 +1,7 @@
 package com.tourism.tourismtechnology.api;
 
 import com.tourism.tourismtechnology.entity.Transaction;
+import com.tourism.tourismtechnology.model.TransactionDto;
 import com.tourism.tourismtechnology.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class TransactionController {
     }
 
     @GetMapping
-    public List<Transaction> getAllTransactions() {
+    public List<TransactionDto> getAllTransactions() {
         return transactionService.getAllTransactions();
     }
 
@@ -39,7 +40,7 @@ public class TransactionController {
     }
 
     @PostMapping
-    public Transaction createTransaction(@RequestBody Transaction transaction) {
+    public TransactionDto createTransaction(@RequestBody Transaction transaction) {
         return transactionService.createTransaction(transaction);
     }
 
