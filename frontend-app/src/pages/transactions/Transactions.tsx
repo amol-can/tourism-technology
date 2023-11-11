@@ -1,5 +1,7 @@
+import { AdminPanelLayout } from '@/layouts';
+
 const Transactions = () => {
-    return <div>Transactions</div>;
+    return <AdminPanelLayout>Transactions</AdminPanelLayout>;
 };
 
 export default Transactions;

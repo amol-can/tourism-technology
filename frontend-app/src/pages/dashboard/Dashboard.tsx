@@ -1,7 +1,7 @@
-import { Box } from '@chakra-ui/react';
+import { AdminPanelLayout } from '@/layouts';
 
 function Dashboard() {
-    return <Box>Dashboard</Box>;
+    return <AdminPanelLayout>Dashboard</AdminPanelLayout>;
 }
 
 export default Dashboard;

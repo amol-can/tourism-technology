@@ -1,5 +1,7 @@
+import { AdminPanelLayout } from '@/layouts';
+
 const Rewards = () => {
-    return <div>Rewards</div>;
+    return <AdminPanelLayout>Rewards</AdminPanelLayout>;
 };
 
 export default Rewards;
