@@ -33,9 +33,8 @@ public class Transaction {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date date = new Date();
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)

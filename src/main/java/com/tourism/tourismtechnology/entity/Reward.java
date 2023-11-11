@@ -39,8 +39,7 @@ public class Reward {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date date = new Date();
 
 }
