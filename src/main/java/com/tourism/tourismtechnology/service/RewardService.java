@@ -19,5 +19,10 @@ public class RewardService {
         return rewardRepository.save(reward);
     }
 
+    // get reward by user id
+    public Reward getRewardByUserId(Long id) {
+        return rewardRepository.findByUserId(id);
+    }
+
 
 }
