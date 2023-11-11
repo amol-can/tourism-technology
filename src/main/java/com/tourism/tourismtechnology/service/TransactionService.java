@@ -47,17 +47,18 @@ public class TransactionService {
     public TransactionDto createTransaction(Transaction transaction) {
         Transaction savedTransaction = transactionRepository.save(transaction);
 
-        // Calculate reward points based on the transaction amount
+        // Calculate point points based on the transaction amount
         int points = savedTransaction.getAmount().intValue();
 
-        // Create a new Reward object and set the points and transaction
-        Point reward = new Point();
-        reward.setPoints(points);
-        reward.setTransaction(savedTransaction);
-        reward.setUser(savedTransaction.getBusiness());
-        reward.setDate(new Date());
+        // Create a new Point object and set the points and transaction
+        Point point = new Point();
+        point.setPoints(points);
+        point.setTransaction(savedTransaction);
+        point.setUser(savedTransaction.getBusiness());
+        point.setDate(new Date());
+        point.setPoints(points);
 
-        pointService.createPoint(reward);
+        pointService.createPoint(point);
 
         return transactionMapper.toDto(savedTransaction);
     }
