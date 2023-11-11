@@ -2,7 +2,7 @@ package com.tourism.tourismtechnology.service;
 
 import com.tourism.tourismtechnology.entity.Transaction;
 import com.tourism.tourismtechnology.mapper.TransactionMapper;
-import com.tourism.tourismtechnology.model.TransactionDto;
+import com.tourism.tourismtechnology.model.dto.TransactionDto;
 import com.tourism.tourismtechnology.repository.TransactionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,9 +24,6 @@ class TransactionServiceTest {
     private TransactionRepository transactionRepository;
 
     @Mock
-    private PointService rewardService;
-
-    @Mock
     private TransactionMapper transactionMapper;
 
     @InjectMocks
@@ -38,17 +35,7 @@ class TransactionServiceTest {
                 new Transaction(), new Transaction(), new Transaction()
         );
 
-        // Assuming your TransactionMapper converts Transaction entities to TransactionDto
-        List<TransactionDto> expected = transactions.stream()
-                .map(transactionMapper::toDto)
-                .toList();
-
         when(transactionRepository.findAll()).thenReturn(transactions);
-
-        when(transactionMapper.toDto(any())).thenAnswer(invocation -> {
-            Transaction entity = invocation.getArgument(0);
-            return new TransactionDto(/* Map entity to DTO here */);
-        });
 
         List<TransactionDto> actual = transactionService.getAllTransactions();
 

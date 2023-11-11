@@ -1,5 +1,6 @@
-package com.tourism.tourismtechnology.model;
+package com.tourism.tourismtechnology.model.dto;
 
+import com.tourism.tourismtechnology.model.PointDto;
 import lombok.Getter;
 import lombok.Setter;
 

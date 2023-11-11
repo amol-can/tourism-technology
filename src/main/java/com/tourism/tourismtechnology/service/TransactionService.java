@@ -3,7 +3,7 @@ package com.tourism.tourismtechnology.service;
 import com.tourism.tourismtechnology.entity.Point;
 import com.tourism.tourismtechnology.entity.Transaction;
 import com.tourism.tourismtechnology.mapper.TransactionMapper;
-import com.tourism.tourismtechnology.model.TransactionDto;
+import com.tourism.tourismtechnology.model.dto.TransactionDto;
 import com.tourism.tourismtechnology.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

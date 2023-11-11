@@ -1,7 +1,7 @@
 package com.tourism.tourismtechnology.mapper;
 
 import com.tourism.tourismtechnology.entity.User;
-import com.tourism.tourismtechnology.model.UserDto;
+import com.tourism.tourismtechnology.model.dto.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

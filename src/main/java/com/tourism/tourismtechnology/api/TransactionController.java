@@ -1,7 +1,7 @@
 package com.tourism.tourismtechnology.api;
 
 import com.tourism.tourismtechnology.entity.Transaction;
-import com.tourism.tourismtechnology.model.TransactionDto;
+import com.tourism.tourismtechnology.model.dto.TransactionDto;
 import com.tourism.tourismtechnology.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
