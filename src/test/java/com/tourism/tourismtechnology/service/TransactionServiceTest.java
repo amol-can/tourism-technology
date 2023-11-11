@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,11 +65,9 @@ class TransactionServiceTest {
         Long transactionId = 1L;
         when(transactionRepository.findById(transactionId)).thenReturn(Optional.empty());
 
-        Transaction result = transactionService.getTransactionById(transactionId);
-
-        assertNull(result);
-
-        verify(transactionRepository, times(1)).findById(transactionId);
+        assertThrows(NoSuchElementException.class,
+                () -> transactionService.getTransactionById(transactionId)
+        );
     }
 
     @Test

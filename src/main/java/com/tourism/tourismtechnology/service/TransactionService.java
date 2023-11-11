@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class TransactionService {
@@ -33,7 +34,8 @@ public class TransactionService {
     }
 
     public Transaction getTransactionById(Long id) {
-        return transactionRepository.findById(id).orElse(null);
+        return transactionRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("No transaction id is found"));
     }
 
     public List<Transaction> getTransactionsByClientId(Long id) {
@@ -45,7 +47,7 @@ public class TransactionService {
     }
 
     public TransactionDto createTransaction(Transaction transaction) {
-        // Calculate point points based on the transaction amount
+        // Calculate points based on the transaction amount
         int points = transaction.getAmount().intValue();
         transaction.setPoint(points);
         // Save the Transaction object first
@@ -61,7 +63,7 @@ public class TransactionService {
         point.setTransaction(savedTransaction);
 
         // Save the Point object
-        Point savedPoint = pointService.createPoint(point);
+        pointService.createPoint(point);
 
         return transactionMapper.toDto(savedTransaction);
     }

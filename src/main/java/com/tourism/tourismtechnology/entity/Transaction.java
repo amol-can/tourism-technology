@@ -24,11 +24,11 @@ public class Transaction {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date = new Date();
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private User client;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "business_id", nullable = false)
     private User business;
 

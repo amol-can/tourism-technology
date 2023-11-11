@@ -18,18 +18,16 @@ public class PointService {
         this.pointRepository = pointRepository;
     }
 
-    public Point createPoint(Point point) {
-        return pointRepository.save(point);
-    }
-
-    public Point getRewardByUserId(Long id) {
-        return pointRepository.findByUserId(id);
+    public void createPoint(Point point) {
+        pointRepository.save(point);
     }
 
     public PointsResponse getTotalPointsByUserId(Long id) {
         List<Point> rewards = pointRepository.findAllByUserId(id);
 
-        long totalPoints = rewards.stream().mapToInt(Point::getPoints).sum();
+        long totalPoints = rewards.stream()
+                .mapToInt(Point::getPoints)
+                .sum();
 
         PointsResponse rewardResponse = new PointsResponse();
         rewardResponse.setUserId(id);
