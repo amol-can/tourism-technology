@@ -45,5 +45,5 @@ public class Transaction {
     private User business;
 
     @OneToOne(mappedBy = "transaction", cascade = CascadeType.ALL)
-    private Reward reward;
+    private Point reward;
 }

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RewardResponse {
+public class PointsResponse {
 
     Long userId;
     Long points;

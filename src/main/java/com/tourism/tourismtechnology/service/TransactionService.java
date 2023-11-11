@@ -1,6 +1,6 @@
 package com.tourism.tourismtechnology.service;
 
-import com.tourism.tourismtechnology.entity.Reward;
+import com.tourism.tourismtechnology.entity.Point;
 import com.tourism.tourismtechnology.entity.Transaction;
 import com.tourism.tourismtechnology.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import java.util.List;
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
-    private final RewardService rewardService;
+    private final PointService rewardService;
 
     @Autowired
-    public TransactionService(TransactionRepository transactionRepository, RewardService rewardService) {
+    public TransactionService(TransactionRepository transactionRepository, PointService rewardService) {
         this.transactionRepository = transactionRepository;
         this.rewardService = rewardService;
     }
@@ -44,13 +44,13 @@ public class TransactionService {
         int points = savedTransaction.getAmount().intValue();
 
         // Create a new Reward object and set the points and transaction
-        Reward reward = new Reward();
+        Point reward = new Point();
         reward.setPoints(points);
         reward.setTransaction(savedTransaction);
         reward.setUser(savedTransaction.getBusiness());
         reward.setDate(new Date());
 
-        rewardService.createReward(reward);
+        rewardService.createPoint(reward);
 
         return savedTransaction;
     }

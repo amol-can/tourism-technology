@@ -18,11 +18,11 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "rewards")
+@Table(name = "points")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Reward {
+public class Point {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
