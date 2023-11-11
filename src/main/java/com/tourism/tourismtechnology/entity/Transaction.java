@@ -32,8 +32,6 @@ public class Transaction {
     @JoinColumn(name = "business_id", nullable = false)
     private User business;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "point_id", referencedColumnName = "id")
-    private Point point;
+    private Integer point;
 
 }
