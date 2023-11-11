@@ -19,15 +19,12 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public User login(LoginRequest loginRequest) {
+    public User login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
     }
 
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest registerRequest) {
-
         return authService.register(registerRequest);
-
-
     }
 }

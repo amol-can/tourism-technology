@@ -19,10 +19,10 @@ public class AuthService {
 
     public User login(LoginRequest loginRequest) {
         User user = userRepository.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
-        if (user != null) {
-            return user;
+        if (user == null) {
+            throw new IllegalArgumentException("Credentials incorrect!");
         }
-        throw new IllegalArgumentException("Credentials incorrect!");
+        return user;
     }
 
     public boolean userExists(String username) {
@@ -30,7 +30,6 @@ public class AuthService {
     }
 
     public User register(RegisterRequest registerRequest) {
-
         if (userExists(registerRequest.getUsername())) {
             throw new IllegalArgumentException("Username is taken!");
         }
@@ -38,7 +37,7 @@ public class AuthService {
         User newUser = new User();
         newUser.setUsername(registerRequest.getUsername());
         newUser.setPassword(registerRequest.getPassword());
-        newUser.setRole(registerRequest.getRole()); // Set default role to CUSTOMER, modify as needed
+        newUser.setRole(User.ROLE.valueOf(registerRequest.getRole()));
 
         return userRepository.save(newUser);
     }
