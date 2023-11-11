@@ -53,6 +53,7 @@ const LoginForm = (props: LoginFormProps) => {
                     </FormLabel>
                     <Input
                         id='password'
+                        type='password'
                         placeholder='Type password here..'
                         fontSize='larger'
                         height='16'

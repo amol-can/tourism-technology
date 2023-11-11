@@ -1,11 +1,14 @@
 import { Flex, Box, Image } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 import paymentsImg from '@/assets/images/mobile-payment.jpg';
 import { LoginForm } from './components';
 
-function Auth() {
+const Auth = () => {
+    const navigate = useNavigate();
+
     const handleSubmit = (data: unknown) => {
-        console.log(data);
+        navigate('/overview', { replace: true });
     };
 
     return (
@@ -24,6 +27,6 @@ function Auth() {
             </Flex>
         </Flex>
     );
-}
+};
 
 export default Auth;
