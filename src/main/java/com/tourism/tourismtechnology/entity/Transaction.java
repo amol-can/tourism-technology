@@ -24,15 +24,16 @@ public class Transaction {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date = new Date();
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "client_id", nullable = false)
     private User client;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "business_id", nullable = false)
     private User business;
 
-    @OneToOne(mappedBy = "transaction", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "point_id", referencedColumnName = "id")
     private Point point;
 
 }
