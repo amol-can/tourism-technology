@@ -1,18 +1,13 @@
 package com.tourism.tourismtechnology.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "users")
 @Getter
 @Setter
+@Entity(name = "users")
 @NoArgsConstructor
 public class User {
     @Id
@@ -21,5 +16,12 @@ public class User {
 
     private String username;
     private String password;
-    private String role;
+
+    @Enumerated(EnumType.STRING)
+    private ROLE role;
+
+    public enum ROLE {
+        CUSTOMER,
+        BUSINESS
+    }
 }
