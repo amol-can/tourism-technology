@@ -32,4 +32,6 @@ public class Transaction {
     @JoinColumn(name = "business_id", nullable = false)
     private User business;
 
+    private Integer point;
+
 }
