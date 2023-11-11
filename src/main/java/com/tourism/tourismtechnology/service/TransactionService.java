@@ -47,6 +47,7 @@ public class TransactionService {
         Reward reward = new Reward();
         reward.setPoints(points);
         reward.setTransaction(savedTransaction);
+        reward.setUser(savedTransaction.getBusiness());
         reward.setDate(new Date());
 
         rewardService.createReward(reward);
