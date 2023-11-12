@@ -1,6 +1,7 @@
 import { Box, Button, Card, GridItem, Image, Text } from '@chakra-ui/react';
 
 import { IRewardProps } from './Reward.types';
+import { CheckCircleIcon } from '@chakra-ui/icons';
 
 const Reward = (props: IRewardProps) => {
     const { id, points, title, onClaim, disabled } = props;
@@ -24,12 +25,13 @@ const Reward = (props: IRewardProps) => {
 
                     <Button
                         w='100%'
-                        colorScheme='blue'
+                        colorScheme={disabled ? 'gray' : 'green'}
+                        color={disabled ? 'gray' : 'green.400'}
                         variant='outline'
                         onClick={() => onClaim(id)}
                         disabled={disabled}
                     >
-                        Claim
+                        Claim <CheckCircleIcon ml='3' />
                     </Button>
                 </Box>
             </Card>
