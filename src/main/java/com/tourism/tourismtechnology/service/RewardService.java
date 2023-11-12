@@ -1,5 +1,6 @@
 package com.tourism.tourismtechnology.service;
 
+import com.tourism.tourismtechnology.entity.Point;
 import com.tourism.tourismtechnology.entity.Reward;
 import com.tourism.tourismtechnology.model.ClaimRequest;
 import com.tourism.tourismtechnology.model.ClaimResponse;
@@ -26,6 +27,20 @@ public class RewardService {
 
     public List<Reward> getAllRewards() {
         return rewardRepository.findAll();
+    }
+
+    public List<Reward> getRewardByBusinessId(Long id) {
+        Optional<Point> pointOptional = pointService.getPointByBusinessId(id);
+        int points = pointOptional.map(Point::getPoints).orElse(0);
+
+        List<Reward> rewards = rewardRepository.findAll();
+        rewards.forEach(reward -> {
+            if (points < reward.getPoints()) {
+                reward.setDisabled(true);
+            }
+        });
+
+        return rewards;
     }
 
     public Reward createReward(RewardRequest rewardRequest) {

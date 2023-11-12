@@ -26,6 +26,11 @@ public class RewardController {
         return rewardService.getAllRewards();
     }
 
+    @GetMapping("/{id}")
+    public List<Reward> getRewardByBusinessId(@PathVariable Long id) {
+        return rewardService.getRewardByBusinessId(id);
+    }
+
     @PostMapping
     public Reward createReward(@RequestBody RewardRequest rewardRequest) {
         return rewardService.createReward(rewardRequest);
