@@ -7,8 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PointsResponse {
+public class ClaimRequest {
 
-    Long userId;
-    Integer points;
+    private Long businessId;
+    private Long rewardId;
+
 }

@@ -1,6 +1,8 @@
 package com.tourism.tourismtechnology.api;
 
 import com.tourism.tourismtechnology.entity.Reward;
+import com.tourism.tourismtechnology.model.ClaimRequest;
+import com.tourism.tourismtechnology.model.ClaimResponse;
 import com.tourism.tourismtechnology.model.RewardRequest;
 import com.tourism.tourismtechnology.service.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,11 @@ public class RewardController {
     @PostMapping
     public Reward createReward(@RequestBody RewardRequest rewardRequest) {
         return rewardService.createReward(rewardRequest);
+    }
+
+    @PostMapping("/claim")
+    public ClaimResponse claimReward(@RequestBody ClaimRequest claimRequest) {
+        return rewardService.claimReward(claimRequest);
     }
 
 }

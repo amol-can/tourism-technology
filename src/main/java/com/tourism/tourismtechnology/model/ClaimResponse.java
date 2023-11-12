@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PointsResponse {
+public class ClaimResponse {
 
-    Long userId;
-    Integer points;
+    private String claimMessage;
+    private boolean isClaimed;
 }
