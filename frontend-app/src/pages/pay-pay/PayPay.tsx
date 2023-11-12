@@ -31,12 +31,14 @@ const PayPay = () => {
             .post('/transactions', paymentSimulation)
             .then(() => {
                 toast({
+                    position: 'top-right',
                     status: 'success',
                     description: 'Your payment was successful!',
                 });
             })
             .catch(() =>
                 toast({
+                    position: 'top-right',
                     status: 'error',
                     description: 'There was an error paying!',
                 })

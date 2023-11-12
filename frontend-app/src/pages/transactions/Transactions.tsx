@@ -17,7 +17,7 @@ const Transactions = () => {
     const { data, isLoading } = useQuery('transactionsData', () =>
         client
             .get<ITransaction[]>(
-                `/transactions/${isBusinessUser ? 'business' : 'customer'}/${
+                `/transactions/${isBusinessUser ? 'business' : 'client'}/${
                     userData?.id
                 }`
             )
