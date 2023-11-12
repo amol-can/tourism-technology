@@ -10,7 +10,7 @@ const Reward = (props: IRewardProps) => {
         <GridItem>
             <Card borderRadius='10'>
                 <Image
-                    src='https://images.unsplash.com/photo-1698822311774-dfc1bd0b4ab9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5OTc0NDE4OA&ixlib=rb-4.0.3&q=80&w=300'
+                    src='https://media.istockphoto.com/id/1150233756/photo/businessman-working-and-discussing-business-together.jpg?s=612x612&w=0&k=20&c=6cUwfpiLrRYaKmEW6Qd26qqQkoWpMW7rlXIxcXbGvsY='
                     objectFit='cover'
                     h='200px'
                     borderTopRadius='10'
