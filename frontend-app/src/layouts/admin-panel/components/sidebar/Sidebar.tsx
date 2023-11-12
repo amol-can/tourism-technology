@@ -9,7 +9,7 @@ const Sidebar = () => {
     const location = useLocation();
     const pathname = location.pathname;
 
-    const userData = useUserStore((state) => state.userData);
+    const { setUserData, userData } = useUserStore((state) => state);
 
     return (
         <Flex bg='gray.200' p='6' width='250px' as='aside' direction='column'>
@@ -71,11 +71,10 @@ const Sidebar = () => {
 
             <Button
                 mb='6'
-                as={Link}
-                to='/'
                 border='none'
                 bg='transparent'
                 textDecoration='none'
+                onClick={() => setUserData(undefined)}
             >
                 <Flex alignItems='center'>
                     <ExternalLinkIcon />

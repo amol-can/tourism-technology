@@ -41,7 +41,7 @@ const LoginForm = (props: LoginFormProps) => {
                     </FormLabel>
                     <Input
                         id='username'
-                        placeholder='Type username here..'
+                        placeholder='Username here..'
                         fontSize='larger'
                         height='16'
                         {...register('username', {
@@ -64,7 +64,7 @@ const LoginForm = (props: LoginFormProps) => {
                     <Input
                         id='password'
                         type='password'
-                        placeholder='Type password here..'
+                        placeholder='Password here..'
                         fontSize='larger'
                         height='16'
                         {...register('password', {
@@ -82,7 +82,7 @@ const LoginForm = (props: LoginFormProps) => {
 
                 <Button
                     mt={4}
-                    colorScheme='teal'
+                    colorScheme='blue'
                     isLoading={isSubmitting}
                     type='submit'
                     border='0'
