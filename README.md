@@ -45,3 +45,19 @@ The frontend application is located in the `frontend-app` folder. It uses React 
 - ESLint configuration can be expanded for production applications to enable type aware lint rules.
 
 For more details, please refer to the `README.md` file in the `frontend-app` folder.
+
+## Running the Application
+
+### Running the Spring Boot Application
+
+To run the Spring Boot application, navigate to the root directory of the project in your terminal and run the following command:
+
+```bash
+./mvnw spring-boot:run
+```
+
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Open Source
+This project is open source under the MIT license. See the LICENSE file for more information.
