@@ -12,7 +12,7 @@ const Rewards = () => {
     const userData = useUserStore((state) => state.userData);
     const toast = useToast();
 
-    const { data, refetch } = useQuery('rewardsData', () =>
+    const { data } = useQuery('rewardsData', () =>
         client
             .get<IReward[]>(`/rewards/${userData?.id}`)
             .then((res) => res.data)
@@ -20,13 +20,12 @@ const Rewards = () => {
 
     const { mutate } = useMutation((rewardId: number) =>
         client
-            .post('/rewards', { rewardId, businessId: userData?.id })
+            .post('/rewards/claim', { rewardId, businessId: userData?.id })
             .then(() => {
                 toast({
                     status: 'success',
                     description: 'The reward was claimed!',
                 });
-                refetch();
             })
             .catch(() =>
                 toast({
