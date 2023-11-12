@@ -1,3 +1,6 @@
+import { TUserFormData } from '@/pages/auth/Auth.types';
+
 export interface LoginFormProps {
-    onSubmit: (data: unknown) => void;
+    onSubmit: (data: TUserFormData) => void;
+    isSubmitting: boolean;
 }

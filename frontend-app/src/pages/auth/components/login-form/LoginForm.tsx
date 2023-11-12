@@ -10,16 +10,18 @@ import {
 } from '@chakra-ui/react';
 
 import { LoginFormProps } from './LoginForm.types';
+import { TUserFormData } from '@/pages/auth/Auth.types';
+
 import { Form } from './LoginForm.styles';
 
 const LoginForm = (props: LoginFormProps) => {
-    const { onSubmit } = props;
+    const { onSubmit, isSubmitting } = props;
 
     const {
         handleSubmit,
         register,
-        formState: { errors, isSubmitting },
-    } = useForm({
+        formState: { errors },
+    } = useForm<TUserFormData>({
         defaultValues: {
             username: '',
             password: '',
@@ -29,7 +31,11 @@ const LoginForm = (props: LoginFormProps) => {
     return (
         <Box px='6' w='100%' maxW='500px'>
             <Form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl isInvalid={!!errors.username} mb='4'>
+                <FormControl
+                    isInvalid={!!errors.username}
+                    mb='4'
+                    isDisabled={isSubmitting}
+                >
                     <FormLabel htmlFor='username' fontSize='larger'>
                         Username
                     </FormLabel>
@@ -47,7 +53,11 @@ const LoginForm = (props: LoginFormProps) => {
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={!!errors.password} mb='4'>
+                <FormControl
+                    isInvalid={!!errors.password}
+                    mb='4'
+                    isDisabled={isSubmitting}
+                >
                     <FormLabel htmlFor='password' fontSize='larger'>
                         Password
                     </FormLabel>
@@ -79,8 +89,9 @@ const LoginForm = (props: LoginFormProps) => {
                     w='100%'
                     fontSize='larger'
                     height='16'
+                    disabled={isSubmitting}
                 >
-                    SUBMIT
+                    {isSubmitting ? 'Loading...' : 'SUBMIT'}
                 </Button>
             </Form>
         </Box>
