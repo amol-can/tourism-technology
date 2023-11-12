@@ -29,3 +29,13 @@ export interface IReward {
     title: string;
     disabled: boolean;
 }
+
+export interface IPaymentSimulation {
+    amount: number;
+    client: {
+        id: number;
+    };
+    business: {
+        id: number;
+    };
+}

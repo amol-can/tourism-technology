@@ -3,6 +3,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
 
 import { useUserStore } from '@/stores';
+import { UserRole } from '@/types/response.types';
 
 const Sidebar = () => {
     const location = useLocation();
@@ -40,16 +41,32 @@ const Sidebar = () => {
                 >
                     <Text fontSize='large'>Transactions</Text>
                 </Button>
-                <Button
-                    as={Link}
-                    to='/rewards'
-                    colorScheme='blue'
-                    variant={pathname === '/rewards' ? 'solid' : 'ghost'}
-                    border='0'
-                    textDecoration='none'
-                >
-                    <Text fontSize='large'>Rewards</Text>
-                </Button>
+
+                {userData?.role === UserRole.BUSINESS && (
+                    <Button
+                        as={Link}
+                        to='/rewards'
+                        colorScheme='blue'
+                        variant={pathname === '/rewards' ? 'solid' : 'ghost'}
+                        border='0'
+                        textDecoration='none'
+                    >
+                        <Text fontSize='large'>Rewards</Text>
+                    </Button>
+                )}
+
+                {userData?.role === UserRole.CUSTOMER && (
+                    <Button
+                        as={Link}
+                        to='/pay-pay'
+                        colorScheme='blue'
+                        variant={pathname === '/pay-pay' ? 'solid' : 'ghost'}
+                        border='0'
+                        textDecoration='none'
+                    >
+                        <Text fontSize='large'>PayPay 💸</Text>
+                    </Button>
+                )}
             </VStack>
 
             <Button

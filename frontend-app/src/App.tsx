@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Auth, Overview, Rewards, Transactions } from '@/pages';
+import { Auth, Overview, Rewards, Transactions, PayPay } from '@/pages';
 import { ProtectedRoute } from '@/components';
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
                 <Route path='overview' element={<Overview />} />
                 <Route path='transactions' element={<Transactions />} />
                 <Route path='rewards' element={<Rewards />} />
+                <Route path='pay-pay' element={<PayPay />} />
             </Route>
             <Route path='*' element={<h1>There's nothing here: 404!</h1>} />
         </Routes>
