@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class Dashboard {
 
-    private Long totalPoints;
+    private Integer totalPoints;
     private Long nrOfTransactions;
 
 }
