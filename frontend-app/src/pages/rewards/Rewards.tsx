@@ -12,7 +12,7 @@ const Rewards = () => {
     const userData = useUserStore((state) => state.userData);
     const toast = useToast();
 
-    const { data } = useQuery('rewardsData', () =>
+    const { data, refetch } = useQuery('rewardsData', () =>
         client
             .get<IReward[]>(`/rewards/${userData?.id}`)
             .then((res) => res.data)
@@ -23,14 +23,16 @@ const Rewards = () => {
             .post('/rewards/claim', { rewardId, businessId: userData?.id })
             .then(() => {
                 toast({
+                    position: 'top-right',
                     status: 'success',
-                    description: 'The reward was claimed!',
+                    title: 'The reward was claimed!',
                 });
+                refetch();
             })
             .catch(() =>
                 toast({
                     status: 'error',
-                    description: 'There was an error logging in!',
+                    title: 'There was an error logging in!',
                 })
             )
     );

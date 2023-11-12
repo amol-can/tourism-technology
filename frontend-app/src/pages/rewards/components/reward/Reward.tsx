@@ -28,7 +28,10 @@ const Reward = (props: IRewardProps) => {
                         colorScheme={disabled ? 'gray' : 'green'}
                         color={disabled ? 'gray' : 'green.400'}
                         variant='outline'
-                        onClick={() => onClaim(id)}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onClaim(id);
+                        }}
                         disabled={disabled}
                     >
                         Claim <CheckCircleIcon ml='3' />
