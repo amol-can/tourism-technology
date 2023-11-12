@@ -29,11 +29,11 @@ public class Point {
     @Column(nullable = false)
     private int points;
 
-    @OneToOne
+   /* @OneToOne
     @JoinColumn(name = "transaction_id", nullable = false)
-    private Transaction transaction;
+    private Transaction transaction;*/
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

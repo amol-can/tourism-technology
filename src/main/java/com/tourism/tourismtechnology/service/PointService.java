@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class PointService {
@@ -18,23 +20,38 @@ public class PointService {
         this.pointRepository = pointRepository;
     }
 
+    public Optional<Point> getPointByBusinessId(Long userId) {
+        return pointRepository.findByUserId(userId);
+    }
+
     public void createPoint(Point point) {
         pointRepository.save(point);
     }
 
     public PointsResponse getTotalPointsByUserId(Long id) {
-        List<Point> rewards = pointRepository.findAllByUserId(id);
+        List<Point> points = pointRepository.findAllByUserId(id);
 
-        long totalPoints = rewards.stream()
+        int totalPoints = points.stream()
+                .filter(Objects::nonNull)
                 .mapToInt(Point::getPoints)
                 .sum();
 
-        PointsResponse rewardResponse = new PointsResponse();
-        rewardResponse.setUserId(id);
-        rewardResponse.setPoints(totalPoints);
+        PointsResponse pointsResponse = new PointsResponse();
+        pointsResponse.setUserId(id);
+        pointsResponse.setPoints(totalPoints);
 
-        return rewardResponse;
+        return pointsResponse;
     }
 
+    public Integer reducePoints(Long businessId, Integer customerPoints, Integer pointsToReduce) {
 
+        int remainingPoints = customerPoints - pointsToReduce;
+
+        Point point = pointRepository.findByUserId(businessId)
+                .orElseThrow(() -> new IllegalArgumentException("Business with id " + businessId + " not found"));
+        point.setPoints(remainingPoints);
+        pointRepository.save(point);
+
+        return remainingPoints;
+    }
 }

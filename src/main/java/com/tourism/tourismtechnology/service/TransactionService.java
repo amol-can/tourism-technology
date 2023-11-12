@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class TransactionService {
@@ -54,16 +55,20 @@ public class TransactionService {
         Transaction savedTransaction = transactionRepository.save(transaction);
 
         // Create a new Point object and set the points and user
-        Point point = new Point();
-        point.setPoints(points);
-        point.setUser(savedTransaction.getBusiness());
-        point.setDate(new Date());
+        // if business is not present in points table, create a new point object
+        Optional<Point> optionalPoint = pointService.getPointByBusinessId(savedTransaction.getBusiness().getId());
 
-        // Set the saved Transaction object to the point
-        point.setTransaction(savedTransaction);
-
-        // Save the Point object
-        pointService.createPoint(point);
+        if (optionalPoint.isPresent()) {
+            Point point = optionalPoint.get();
+            point.setPoints(point.getPoints() + points);
+            pointService.createPoint(point);
+        } else {
+            Point point = new Point();
+            point.setPoints(points);
+            point.setUser(savedTransaction.getBusiness());
+            point.setDate(new Date());
+            pointService.createPoint(point);
+        }
 
         return transactionMapper.toDto(savedTransaction);
     }
