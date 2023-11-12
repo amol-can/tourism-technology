@@ -1,4 +1,4 @@
-import { Flex, Box, Image, useToast } from '@chakra-ui/react';
+import { Flex, Box, Image, useToast, Heading } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
@@ -48,7 +48,15 @@ const Auth = () => {
                 />
             </Box>
 
-            <Flex flex='1' alignItems='center' justifyContent='center'>
+            <Flex
+                flex='1'
+                alignItems='center'
+                justifyContent='center'
+                flexDirection='column'
+            >
+                <Heading size='3xl' mb='20' fontWeight='500'>
+                    PayPay
+                </Heading>
                 <LoginForm
                     onSubmit={handleSubmit}
                     isSubmitting={isSubmitting}
