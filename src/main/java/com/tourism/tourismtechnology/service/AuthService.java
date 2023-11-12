@@ -39,4 +39,9 @@ public class AuthService {
         return userRepository.save(newUser);
     }
 
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User with id " + id + " not found"));
+    }
+
 }

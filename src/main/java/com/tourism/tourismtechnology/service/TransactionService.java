@@ -56,16 +56,30 @@ public class TransactionService {
 
         // Create a new Point object and set the points and user
         // if business is not present in points table, create a new point object
-        Optional<Point> optionalPoint = pointService.getPointByBusinessId(savedTransaction.getBusiness().getId());
+        Optional<Point> businessOptionalPoint = pointService.getPointByBusinessId(savedTransaction.getBusiness().getId());
 
-        if (optionalPoint.isPresent()) {
-            Point point = optionalPoint.get();
+        if (businessOptionalPoint.isPresent()) {
+            Point point = businessOptionalPoint.get();
             point.setPoints(point.getPoints() + points);
             pointService.createPoint(point);
         } else {
             Point point = new Point();
             point.setPoints(points);
             point.setUser(savedTransaction.getBusiness());
+            point.setDate(new Date());
+            pointService.createPoint(point);
+        }
+
+        Optional<Point> clientOptionalPoint = pointService.getPointByBusinessId(savedTransaction.getClient().getId());
+
+        if (clientOptionalPoint.isPresent()) {
+            Point point = clientOptionalPoint.get();
+            point.setPoints(point.getPoints() + points);
+            pointService.createPoint(point);
+        } else {
+            Point point = new Point();
+            point.setPoints(points);
+            point.setUser(savedTransaction.getClient());
             point.setDate(new Date());
             pointService.createPoint(point);
         }
