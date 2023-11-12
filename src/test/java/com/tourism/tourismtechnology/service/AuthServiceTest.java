@@ -54,24 +54,6 @@ class AuthServiceTest {
     }
 
     @Test
-    void testUserExists() {
-        when(userRepository.existsByUsername("existingUsername")).thenReturn(true);
-
-        assertTrue(authService.userExists("existingUsername"));
-
-        verify(userRepository, times(1)).existsByUsername("existingUsername");
-    }
-
-    @Test
-    void testUserDoesNotExist() {
-        when(userRepository.existsByUsername("nonExistingUsername")).thenReturn(false);
-
-        assertFalse(authService.userExists("nonExistingUsername"));
-
-        verify(userRepository, times(1)).existsByUsername("nonExistingUsername");
-    }
-
-    @Test
     void testRegisterNewUser() {
         User user = new User();
         user.setUsername("newUser");

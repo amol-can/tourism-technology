@@ -20,17 +20,13 @@ public class AuthService {
     public User login(LoginRequest loginRequest) {
         User user = userRepository.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
         if (user == null) {
-            throw new IllegalArgumentException("Credentials incorrect!");
+            throw new IllegalArgumentException("Incorrect Credentials!");
         }
         return user;
     }
 
-    public boolean userExists(String username) {
-        return userRepository.existsByUsername(username);
-    }
-
     public User register(RegisterRequest registerRequest) {
-        if (userExists(registerRequest.getUsername())) {
+        if (userRepository.existsByUsername(registerRequest.getUsername())) {
             throw new IllegalArgumentException("Username is taken!");
         }
 
@@ -42,4 +38,5 @@ public class AuthService {
 
         return userRepository.save(newUser);
     }
+
 }
