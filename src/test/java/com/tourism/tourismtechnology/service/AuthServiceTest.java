@@ -29,6 +29,7 @@ class AuthServiceTest {
         User mockUser = new User();
         mockUser.setUsername("username");
         mockUser.setPassword("password");
+        mockUser.setFullName("fullName");
 
         when(userRepository.findByUsernameAndPassword("username", "password")).thenReturn(mockUser);
 
@@ -75,7 +76,7 @@ class AuthServiceTest {
         User user = new User();
         user.setUsername("newUser");
         user.setPassword("password");
-        RegisterRequest registerRequest = new RegisterRequest("newUser", "password", "CUSTOMER");
+        RegisterRequest registerRequest = new RegisterRequest("newUser", "password", "fullName", "CUSTOMER");
 
         when(userRepository.existsByUsername("newUser")).thenReturn(false);
         when(userRepository.save(any(User.class))).thenReturn(user);
@@ -92,7 +93,7 @@ class AuthServiceTest {
 
     @Test
     void testRegisterUserWithExistingUsername() {
-        RegisterRequest registerRequest = new RegisterRequest("existingUser", "password", "CUSTOMER");
+        RegisterRequest registerRequest = new RegisterRequest("existingUser", "password", "CUSTOMER", "fullName");
         when(userRepository.existsByUsername("existingUser")).thenReturn(true);
 
         assertThrows(IllegalArgumentException.class, () -> authService.register(registerRequest));

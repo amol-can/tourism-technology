@@ -37,6 +37,7 @@ public class AuthService {
         User newUser = new User();
         newUser.setUsername(registerRequest.getUsername());
         newUser.setPassword(registerRequest.getPassword());
+        newUser.setFullName(registerRequest.getFullName());
         newUser.setRole(User.ROLE.valueOf(registerRequest.getRole()));
 
         return userRepository.save(newUser);
