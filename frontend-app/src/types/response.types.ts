@@ -22,3 +22,10 @@ export interface IOverviews {
     totalPoints: number;
     nrOfTransactions: number;
 }
+
+export interface IReward {
+    id: number;
+    points: number;
+    title: string;
+    disabled: boolean;
+}

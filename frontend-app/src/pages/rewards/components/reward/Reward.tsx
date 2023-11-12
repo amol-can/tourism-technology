@@ -1,6 +1,10 @@
 import { Box, Button, Card, GridItem, Image, Text } from '@chakra-ui/react';
 
-const Reward = () => {
+import { IRewardProps } from './Reward.types';
+
+const Reward = (props: IRewardProps) => {
+    const { id, points, title, onClaim, disabled } = props;
+
     return (
         <GridItem>
             <Card borderRadius='10'>
@@ -12,13 +16,19 @@ const Reward = () => {
                 />
                 <Box p='4'>
                     <Text fontWeight='bold' fontSize='large' mb='2'>
-                        Title
+                        {title}
                     </Text>
                     <Text mb='4'>
-                        <strong>Points:</strong> 100
+                        <strong>Points:</strong> {points}
                     </Text>
 
-                    <Button w='100%' colorScheme='blue' variant='outline'>
+                    <Button
+                        w='100%'
+                        colorScheme='blue'
+                        variant='outline'
+                        onClick={() => onClaim(id)}
+                        disabled={disabled}
+                    >
                         Claim
                     </Button>
                 </Box>
