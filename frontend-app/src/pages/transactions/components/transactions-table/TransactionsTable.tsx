@@ -8,7 +8,11 @@ import {
     Tbody,
 } from '@chakra-ui/react';
 
-const TransactionsTable = () => {
+import { ITransactionsTableProps } from './TransactionsTable.types';
+
+const TransactionsTable = (props: ITransactionsTableProps) => {
+    const { data } = props;
+
     return (
         <TableContainer mt='10'>
             <Table variant='striped'>
@@ -21,18 +25,18 @@ const TransactionsTable = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    <Tr>
-                        <Td>1</Td>
-                        <Td>10</Td>
-                        <Td>11.12.23</Td>
-                        <Td>1</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>2</Td>
-                        <Td>100</Td>
-                        <Td>11.11.23</Td>
-                        <Td>100</Td>
-                    </Tr>
+                    {(data ?? []).map((transaction) => (
+                        <Tr key={transaction.id}>
+                            <Td>{transaction.id}</Td>
+                            <Td>{transaction.amount}</Td>
+                            <Td>
+                                {new Date(transaction.date).getDate()}.
+                                {new Date(transaction.date).getMonth()}.
+                                {new Date(transaction.date).getFullYear()}
+                            </Td>
+                            <Td>{transaction.point}</Td>
+                        </Tr>
+                    ))}
                 </Tbody>
             </Table>
         </TableContainer>

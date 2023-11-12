@@ -2,23 +2,27 @@ import { Flex, Box, Image, useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
-import axios from 'axios';
-
 import paymentsImg from '@/assets/images/mobile-payment.jpg';
 import { LoginForm } from './components';
 
 import { TUserFormData } from './Auth.types';
 
+import client from '@/services/client';
+
+import { useUserStore } from '@/stores';
+
 const Auth = () => {
     const navigate = useNavigate();
     const toast = useToast();
 
+    const setUserData = useUserStore((state) => state.setUserData);
+
     const { isLoading: isSubmitting, mutate } = useMutation(
         (user: TUserFormData) =>
-            axios
-                .post('/pay-pay/api/auth/login', user)
+            client
+                .post('/auth/login', user)
                 .then((res) => {
-                    console.log(res.data);
+                    setUserData(res.data);
                     navigate('/overview', { replace: true });
                 })
                 .catch(() =>

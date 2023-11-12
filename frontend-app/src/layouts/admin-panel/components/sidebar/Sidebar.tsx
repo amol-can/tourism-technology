@@ -2,16 +2,20 @@ import { Avatar, Button, Flex, Text, VStack } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
 
+import { useUserStore } from '@/stores';
+
 const Sidebar = () => {
     const location = useLocation();
     const pathname = location.pathname;
 
+    const userData = useUserStore((state) => state.userData);
+
     return (
         <Flex bg='gray.200' p='6' width='250px' as='aside' direction='column'>
             <Flex alignItems='center'>
-                <Avatar name='John Smith' />
+                <Avatar name={userData?.fullName} />
                 <Text as='label' ml='4' fontSize='larger' fontWeight='600'>
-                    John Smith
+                    {userData?.fullName}
                 </Text>
             </Flex>
 
