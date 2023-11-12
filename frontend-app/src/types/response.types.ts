@@ -17,3 +17,8 @@ export interface ITransaction {
     date: string;
     point: number;
 }
+
+export interface IOverviews {
+    totalPoints: number;
+    nrOfTransactions: number;
+}
